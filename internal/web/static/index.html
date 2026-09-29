@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NetPulse</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M2 17h7l3-8 5 15 4-11 2 4h7' fill='none' stroke='%232dd4bf' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 17h7l3-8 5 15 4-11 2 4h7"/></svg>
+      <span>NetPulse</span>
+      <span id="live" class="live off" title="Live connection">offline</span>
+    </div>
+    <div id="netinfo" class="netinfo"></div>
+    <button id="scanBtn" class="btn">Scan now</button>
+  </header>
+
+  <main>
+    <section class="kpis">
+      <div class="kpi"><span class="label">Devices online</span><span class="value" id="kOnline">-</span><span class="sub" id="kTotal"></span></div>
+      <div class="kpi"><span class="label">Download</span><span class="value rx" id="kRx">-</span><span class="sub" id="kRxPeak"></span></div>
+      <div class="kpi"><span class="label">Upload</span><span class="value tx" id="kTx">-</span><span class="sub" id="kTxPeak"></span></div>
+      <div class="kpi"><span class="label">Alerts (24h)</span><span class="value" id="kAlerts">-</span><span class="sub" id="kCritical"></span></div>
+    </section>
+
+    <section class="grid">
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2>Throughput</h2>
+          <div class="legend"><span class="sw rx"></span>Download <span class="sw tx"></span>Upload <span class="muted">· last 5 min</span></div>
+        </div>
+        <canvas id="chart"></canvas>
+      </div>
+      <div class="card alerts-card">
+        <div class="card-head"><h2>Alerts</h2></div>
+        <ul id="alerts" class="alerts"></ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Devices</h2>
+        <span id="scanState" class="muted"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>IP</th><th>MAC</th><th>Vendor</th><th>Hostname</th><th>First seen</th><th>Last seen</th></tr></thead>
+          <tbody id="devices"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer id="footer" class="muted"></footer>
+  </main>
+
+  <div id="toasts" class="toasts"></div>
+  <script src="app.js"></script>
+</body>
+</html>

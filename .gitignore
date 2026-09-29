@@ -1,0 +1,7 @@
+*.exe
+/netpulse
+*.db
+*.db-shm
+*.db-wal
+dist/
+.claude/
